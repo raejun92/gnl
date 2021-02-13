@@ -6,7 +6,7 @@
 /*   By: juchoi <juchoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 14:38:56 by juchoi            #+#    #+#             */
-/*   Updated: 2021/02/11 02:57:08 by juchoi           ###   ########.fr       */
+/*   Updated: 2021/02/14 02:07:11 by juchoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,7 @@ static int		end_line(char **line, char **store, char *buf, int read_len)
 		return (split_store(line, store, store_point, buf));
 	if (*store)
 	{
-		if (!(*line = ft_strdup(*store)))
-			return (-1);
-		free(*store);
+		*line = *store;
 		*store = 0;
 		return (0);
 	}
@@ -97,14 +95,9 @@ int				get_next_line(int fd, char **line)
 	{
 		buf[read_len] = '\0';
 		tmp = store[fd];
-		if (!(store[fd] = ft_strjoin(store[fd], buf)))
-			return (-1);
-		if (tmp)
-		{
-			free(tmp);
-			tmp = 0;
-		}
-		if ((store_point = ft_strhr(store[fd], '\n')))
+		store[fd] = ft_strjoin(store[fd], buf);
+		free(tmp);
+		if ((store_point = ft_strchr(store[fd], '\n')))
 			return (split_store(line, &store[fd], store_point, buf));
 	}
 	return (end_line(line, &store[fd], buf, read_len));
