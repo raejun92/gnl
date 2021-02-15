@@ -6,7 +6,7 @@
 /*   By: juchoi <juchoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 14:38:56 by juchoi            #+#    #+#             */
-/*   Updated: 2021/02/14 00:57:08 by juchoi           ###   ########.fr       */
+/*   Updated: 2021/02/15 14:45:24 by juchoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,14 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
+# include <limits.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 3
+#  define BUFFER_SIZE 5
 # endif
 
 # ifndef OPEN_MAX
-#  define OPEN_MAX 3
+#  define OPEN_MAX 4
 # endif
 
 int			get_next_line(int fd, char **line);

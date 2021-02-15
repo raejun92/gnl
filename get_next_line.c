@@ -6,7 +6,7 @@
 /*   By: juchoi <juchoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 14:38:56 by juchoi            #+#    #+#             */
-/*   Updated: 2021/02/14 02:07:11 by juchoi           ###   ########.fr       */
+/*   Updated: 2021/02/15 14:16:21 by juchoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,11 @@ int				get_next_line(int fd, char **line)
 		buf[read_len] = '\0';
 		tmp = store[fd];
 		store[fd] = ft_strjoin(store[fd], buf);
-		free(tmp);
+		if (tmp)
+		{
+			free(tmp);
+			tmp = 0;
+		}
 		if ((store_point = ft_strchr(store[fd], '\n')))
 			return (split_store(line, &store[fd], store_point, buf));
 	}
